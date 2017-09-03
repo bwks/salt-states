@@ -1,0 +1,2 @@
+epel-release:
+  pkg.installed: []

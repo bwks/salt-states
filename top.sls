@@ -5,3 +5,5 @@ base:
     - development-tools
   '*':
     - vim
+  'minion*':
+    - napalm

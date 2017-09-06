@@ -1,0 +1,33 @@
+{% set pip = salt.grains.filter_by({
+    'Debian': {
+        'pkg': 'python-pip',
+    },
+    'RedHat': {
+        'pkg': 'python2-pip',
+    },
+}) %}
+
+{% set packages = salt.grains.filter_by({
+    'Debian': {
+        'pkgs': [
+            'libxslt1-dev',
+            'libssl-dev',
+            'libffi-dev',
+            'python-dev',
+            'python-cffi',
+            'python-pip',
+        ]
+    },
+    'RedHat': {
+        'pkgs': [
+            'python-devel',
+            'libxml2-devel',
+            'libxslt-devel',
+            'gcc',
+            'openssl',
+            'openssl-devel',
+            'libffi-devel',
+            'python2-pip',
+        ]
+    }
+}) %}

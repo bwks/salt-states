@@ -1,4 +1,4 @@
-yum_packages:
+apt_packages:
   pkg:
     - installed
     - pkgs:

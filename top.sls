@@ -6,4 +6,5 @@ base:
   '*':
     - vim
   'minion*':
+    - pip
     - napalm

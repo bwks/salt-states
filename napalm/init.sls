@@ -1,24 +1,24 @@
 {% from 'napalm/map.jinja' import pip with context %}
 {% from 'napalm/map.jinja' import packages with context %}
 
-pip:
+install-pip:
   pkg.installed:
     - name: {{ pip.pkg }}
 
-setuptools:
+upgrade-setuptools:
   pip.installed:
     - name: setuptools
     - upgrade: True
     - require:
       - pkg: {{ pip.pkg }}
 
-required_packages:
+install-required-packages:
   pkg:
     - installed
     - pkgs:
         {{ packages.pkgs }}
 
-napalm:
+install-napalm:
   pip.installed:
     - name: napalm
     - require:

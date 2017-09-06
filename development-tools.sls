@@ -1,3 +1,4 @@
-"Development Tools":
-  pkg.group_installed: []
+install-development-tools:
+  pkg.group_installed:
+    - name: "Development Tools"
 

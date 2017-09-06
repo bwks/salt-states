@@ -1,2 +1,3 @@
-epel-release:
-  pkg.installed: []
+install-epel-release:
+  pkg.installed:
+    - name: epel-release

@@ -5,6 +5,7 @@ base:
     - development-tools
   '*':
     - vim
+    - motd
   'minion*':
     - pip
     - napalm

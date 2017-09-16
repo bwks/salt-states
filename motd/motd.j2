@@ -1,0 +1,8 @@
+############### Salt Managed ###############
+hostname: {{ grains['id'] }}
+os: {{ grains['os'] }}
+os_family: {{ grains['os_family'] }}
+{%- if grains['datacenter'] is defined %}
+datacenter: {{ grains['datacenter'] }}
+{%- endif %}
+############# End Salt Managed #############

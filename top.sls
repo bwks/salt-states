@@ -1,12 +1,12 @@
 base:
+  '*':
+    - vim
+    - motd
   'os_family:RedHat':
     - match: grain
     - epel-release
     - development-tools
-  '*':
-    - vim
-    - motd
-  'minion*':
+  '*syndic*':
     - pip
-    - python
     - napalm
+  '*minion*':

@@ -8,4 +8,5 @@ base:
     - motd
   'minion*':
     - pip
+    - python
     - napalm

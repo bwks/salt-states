@@ -1,0 +1,13 @@
+{% set required_packages = salt.grains.filter_by({
+    'RedHat': {
+        'pkgs': [
+            'gcc', 
+            'wget', 
+            'zlib', 
+            'zlib-devel', 
+            'openssl', 
+            'openssl-devel',
+        ]
+    }
+}) %}
+

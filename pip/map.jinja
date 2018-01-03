@@ -1,9 +1,0 @@
-{% set pip = salt.grains.filter_by({
-    'Debian': {
-        'pkg': 'python-pip',
-    },
-    'RedHat': {
-        'pkg': 'python2-pip',
-    },
-}) %}
-

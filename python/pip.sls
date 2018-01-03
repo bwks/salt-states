@@ -15,7 +15,7 @@ upgrade-setuptools:
 get-pip:
   file.managed:
     - name: /tmp/get-pip.py
-    - source: https://bootstrap.pypa.io/get-pip.py
+    - source: salt://files/get-pip.py
     - skip_verify: True
 
 {% for python in python_versions %}

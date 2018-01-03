@@ -9,11 +9,10 @@ base:
   '*syndic*':
     - pip
     - napalm
+  'master01':
+    - master-files
 #  '*minion*':
   'minion02':
 #  'master01':
-    - pip
     - python
 
-  'master01':
-    - master-files

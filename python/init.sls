@@ -31,6 +31,6 @@ python-build-{{ value.release }}:
 
 /usr/bin/python{{ value.version }}:
   file.symlink:
-    - target: /usr/local/bin/python{{ value.version }}
+    - target: /usr/local/bin/python{{ value.release }}
     - force: True
 {% endfor %}

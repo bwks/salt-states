@@ -10,7 +10,8 @@ base:
     - pip
     - napalm
 #  '*minion*':
-#  'minion02':
-  'master01':
+  'minion02':
+#  'master01':
+    - pip
     - python
 

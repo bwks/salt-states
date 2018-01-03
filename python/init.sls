@@ -8,6 +8,12 @@ python-install-required-packages:
     - pkgs:
         {{ required_packages.pkgs }}
 
+get-pip:
+  file.managed:
+    - name: /tmp/get-pip.py
+    - source: https://bootstrap.pypa.io/get-pip.py
+    - skip_verify: True
+
 {% for python in python_versions %}
 Python-{{ python.release }}.tgz:
   file.managed:
@@ -33,5 +39,23 @@ python-build-{{ python.release }}:
 /usr/bin/python{{ python.release }}:
   file.symlink:
     - target: /usr/local/bin/python{{ python.version }}
-    - force: True
+
+install-pip{{ python.release }}:
+  cmd.run:
+    - cwd: /tmp
+    - user: root
+    - name: | 
+        /usr/bin/python{{ python.release }} get-pip.py
+    - unless: /usr/bin/pip{{ python.release }}
+
+/usr/bin/pip{{ python.release }}:
+  file.symlink:
+    - target: /usr/local/bin/pip{{ python.version }}
+
+upgrade-setuptools-pip{{ python.release }}:
+  pip.installed:
+    - name: setuptools
+    - upgrade: True
+    - bin_env: /usr/bin/pip{{ python.release }}
+ 
 {% endfor %}

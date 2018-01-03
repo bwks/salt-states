@@ -15,3 +15,5 @@ base:
     - pip
     - python
 
+  'master01':
+    - master-files

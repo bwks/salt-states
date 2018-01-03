@@ -11,14 +11,14 @@ python-install-required-packages:
 get-pip:
   file.managed:
     - name: /tmp/get-pip.py
-    - source: https://bootstrap.pypa.io/get-pip.py
+    - source: salt://files/get-pip.py
     - skip_verify: True
 
 {% for python in python_versions %}
 Python-{{ python.release }}.tgz:
   file.managed:
     - name: /tmp/Python-{{ python.release }}.tgz
-    - source: https://www.python.org/ftp/python/{{ python.release }}/Python-{{ python.release }}.tgz
+    - source: salt://files/Python-{{ python.release }}.tgz
     - source_hash: {{ python.hash }}
 
 extract-python-{{ python.release }}:

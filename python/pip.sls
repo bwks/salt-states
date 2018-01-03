@@ -1,16 +1,17 @@
 {% from 'python/map.jinja' import python_versions with context %}
+{% from 'python/map.jinja' import pip_versions with context %}
 
 # Pip installed with the system python is required for the pip module 
 install-pip:
   pkg.installed:
-    - name: {{ pip.pkg }}
+    - name: {{ pip_versions.pkg }}
 
 upgrade-setuptools:
   pip.installed:
     - name: setuptools
     - upgrade: True
     - require:
-      - pkg: {{ pip.pkg }}
+      - pkg: {{ pip_versions.pkg }}
 
 get-pip:
   file.managed:

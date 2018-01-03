@@ -9,4 +9,7 @@ base:
   '*syndic*':
     - pip
     - napalm
-  '*minion*':
+#  '*minion*':
+  'minion01':
+    - python
+

@@ -25,16 +25,16 @@
     },
 }) %}
 
-{% set python_versions = {
-    'python3': {
-        'version': '3.6',
-        'release': '3.6.4',
-        'hash': '9de6494314ea199e3633211696735f65',
-    },
-    'python2': {
-        'version': '2.7',
-        'release': '2.7.13',
-        'hash': '17add4bf0ad0ec2f08e0cae6d205c700',
-    },
-} %}
+{% set python_versions = [{
+    'name': 'python3', 
+    'version': '3.6',
+    'release': '3.6.4',
+    'hash': '9de6494314ea199e3633211696735f65',
+    },{
+    'name': 'python2', 
+    'version': '2.7',
+    'release': '2.7.13',
+    'hash': '17add4bf0ad0ec2f08e0cae6d205c700',
+    }] 
+%}
 

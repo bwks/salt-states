@@ -8,29 +8,30 @@ python-install-required-packages:
     - pkgs:
         {{ required_packages.pkgs }}
 
-{% for key, value in python_versions.items() %}
-Python-{{ value.release }}.tgz:
+{% for python in python_versions %}
+Python-{{ python.release }}.tgz:
   file.managed:
-    - name: /tmp/Python-{{ value.release }}.tgz
-    - source: https://www.python.org/ftp/python/{{ value.release }}/Python-{{ value.release }}.tgz
-    - source_hash: {{ value.hash }}
+    - name: /tmp/Python-{{ python.release }}.tgz
+    - source: https://www.python.org/ftp/python/{{ python.release }}/Python-{{ python.release }}.tgz
+    - source_hash: {{ python.hash }}
 
-extract-python-{{ value.release }}:
+extract-python-{{ python.release }}:
   archive.extracted:
     - name: /tmp
-    - source: /tmp/Python-{{ value.release }}.tgz
+    - source: /tmp/Python-{{ python.release }}.tgz
 
-python-build-{{ value.release }}:
+python-build-{{ python.release }}:
   cmd.run:
-    - cwd: /tmp/Python-{{ value.release }}
+    - cwd: /tmp/Python-{{ python.release }}
     - user: root
     - name: |
         ./configure --prefix=/usr/local
+        make
         make altinstall
-    - unless: stat /usr/local/bin/python{{ value.version }}
+    - unless: stat /usr/local/bin/python{{ python.version }}
 
-/usr/bin/python{{ value.version }}:
+/usr/bin/python{{ python.release }}:
   file.symlink:
-    - target: /usr/local/bin/python{{ value.release }}
+    - target: /usr/local/bin/python{{ python.version }}
     - force: True
 {% endfor %}

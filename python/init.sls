@@ -1,4 +1,6 @@
 {% from 'python/map.jinja' import required_packages with context %}
+{% from 'python/map.jinja' import python_versions with context %}
+
 
 python-install-required-packages:
   pkg:
@@ -6,26 +8,29 @@ python-install-required-packages:
     - pkgs:
         {{ required_packages.pkgs }}
 
-Python-3.6.4.tgz:
+{% for key, value in python_versions.items() %}
+Python-{{ value.release }}.tgz:
   file.managed:
-    - name: /tmp/Python-3.6.4.tgz
-    - source: https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
-    - source_hash: 9de6494314ea199e3633211696735f65
+    - name: /tmp/Python-{{ value.release }}.tgz
+    - source: https://www.python.org/ftp/python/{{ value.release }}/Python-{{ value.release }}.tgz
+    - source_hash: {{ value.hash }}
 
-extract_python:
+extract-python-{{ value.release }}:
   archive.extracted:
     - name: /tmp
-    - source: /tmp/Python-3.6.4.tgz
+    - source: /tmp/Python-{{ value.release }}.tgz
 
-py_build:
+python-build-{{ value.release }}:
   cmd.run:
-    - cwd: /tmp/Python-3.6.4
+    - cwd: /tmp/Python-{{ value.release }}
     - user: root
     - name: |
         ./configure --prefix=/usr/local
         make altinstall
-    - unless: stat /usr/local/bin/python3.6
+    - unless: stat /usr/local/bin/python{{ value.version }}
 
-/usr/bin/python3.6:
+/usr/bin/python{{ value.version }}:
   file.symlink:
-    - target: /usr/local/bin/python3.6
+    - target: /usr/local/bin/python{{ value.version }}
+    - force: True
+{% endfor %}
